@@ -1,21 +1,17 @@
 function getFormvalue(event) {
-    event.preventDefault(); // Prevent default form submission
-    
-    // Get form by ID
-    const form = document.getElementById('form1');
-    
-    // Get input values by name
+    event.preventDefault(); 
+    const form = event.target;
     const firstName = form.elements['fname'].value.trim();
     const lastName = form.elements['lname'].value.trim();
-    
-    // Validate inputs
-    if (!firstName || !lastName) {
-        alert('Please enter both first name and last name.');
-        return;
-    }
-    
-    // Alert first name and last name
     alert(`${firstName} ${lastName}`);
 }
-document.getElementById('form1').addEventListener('submit', getFormvalue)
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('form1');
+    if (form) {
+        form.addEventListener('submit', getFormvalue);
+        console.log('Event listener attached to form');
+    } else {
+        console.error('Form with id "form1" not found');
+    }
+});
 
